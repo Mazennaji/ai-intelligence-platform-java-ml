@@ -1,40 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>4.0.0</version>
+        <relativePath/>
     </parent>
-    <groupId>org.example</groupId>
-    <artifactId>ai-intelligence-platform-java-ml</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>ai-intelligence-platform-java-ml</name>
-    <description>ai-intelligence-platform-java-ml</description>
-    <url/>
-    <licenses>
-        <license/>
-    </licenses>
-    <developers>
-        <developer/>
-    </developers>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
+
+    <groupId>com.mazen</groupId>
+    <artifactId>ai-intelligence-platform</artifactId>
+    <version>1.0.0</version>
+    <name>AI Intelligence Platform</name>
+    <description>Java ML platform integrating fraud detection, regression, NLP, recommendation systems, and deep learning</description>
+
     <properties>
-        <java.version>25</java.version>
+        <java.version>17</java.version>
+        <weka.version>3.8.6</weka.version>
+        <dl4j.version>1.0.0-M2.1</dl4j.version>
+        <tribuo.version>4.3.1</tribuo.version>
+        <opennlp.version>2.3.2</opennlp.version>
     </properties>
+
     <dependencies>
+        <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
+        <!-- Weka (Fraud Detection / Classification) -->
+        <dependency>
+            <groupId>nz.ac.waikato.cms.weka</groupId>
+            <artifactId>weka-stable</artifactId>
+            <version>${weka.version}</version>
+        </dependency>
+
+        <!-- Tribuo (Regression) -->
+        <dependency>
+            <groupId>org.tribuo</groupId>
+            <artifactId>tribuo-regression-sgd</artifactId>
+            <version>${tribuo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.tribuo</groupId>
+            <artifactId>tribuo-regression-tree</artifactId>
+            <version>${tribuo.version}</version>
+        </dependency>
+
+        <!-- Apache OpenNLP (NLP) -->
+        <dependency>
+            <groupId>org.apache.opennlp</groupId>
+            <artifactId>opennlp-tools</artifactId>
+            <version>${opennlp.version}</version>
+        </dependency>
+
+        <!-- DL4J (Deep Learning) -->
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-core</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nd4j</groupId>
+            <artifactId>nd4j-native-platform</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
+
+        <!-- Utilities -->
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>5.9</version>
+        </dependency>
+
+        <!-- Testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -50,5 +97,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

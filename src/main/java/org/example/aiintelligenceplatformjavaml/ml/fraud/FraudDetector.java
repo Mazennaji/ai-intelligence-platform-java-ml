@@ -41,10 +41,8 @@ public class FraudDetector {
         loader.setSource(csvFile);
         Instances data = loader.getDataSet();
 
-        // Set class attribute (is_fraud — last column)
         data.setClassIndex(data.numAttributes() - 1);
 
-        // Train J48 Decision Tree
         classifier = new J48();
         classifier.buildClassifier(data);
         datasetStructure = new Instances(data, 0);
@@ -61,7 +59,6 @@ public class FraudDetector {
             log.error("Model prediction failed, falling back to rules: {}", e.getMessage());
         }
 
-        // Rule-based fallback
         return ruleBasedPredict(amount, transactionType);
     }
 
@@ -88,12 +85,10 @@ public class FraudDetector {
     private Map<String, Object> ruleBasedPredict(double amount, String transactionType) {
         double riskScore = 0.0;
 
-        // Amount-based risk
         if (amount > 10000) riskScore += 0.4;
         else if (amount > 5000) riskScore += 0.25;
         else if (amount > 2000) riskScore += 0.1;
 
-        // Transaction type risk
         if ("online".equalsIgnoreCase(transactionType)) riskScore += 0.2;
 
         boolean isFraud = riskScore >= 0.5;
